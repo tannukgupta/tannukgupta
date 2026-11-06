@@ -1,0 +1,408 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 540" width="100%" height="540" fill="none">
+  <defs>
+    <!-- Background Gradient -->
+    <linearGradient id="canvasBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#080C15"/>
+      <stop offset="60%" stop-color="#0D1322"/>
+      <stop offset="100%" stop-color="#060910"/>
+    </linearGradient>
+
+    <!-- Card Background Gradient -->
+    <linearGradient id="cardBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#131B2E" stop-opacity="0.95"/>
+      <stop offset="100%" stop-color="#0F1626" stop-opacity="0.98"/>
+    </linearGradient>
+
+    <!-- Power BI Yellow Gradient -->
+    <linearGradient id="pbiGold" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#F2C811"/>
+      <stop offset="100%" stop-color="#DDAA00"/>
+    </linearGradient>
+
+    <!-- Azure Cyan/Blue Gradient -->
+    <linearGradient id="azureBlue" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#38BDF8"/>
+      <stop offset="100%" stop-color="#0284C7"/>
+    </linearGradient>
+
+    <!-- Emerald Gradient -->
+    <linearGradient id="emeraldGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#34D399"/>
+      <stop offset="100%" stop-color="#059669"/>
+    </linearGradient>
+
+    <!-- Area Chart Fill Gradient -->
+    <linearGradient id="areaFill" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#0284C7" stop-opacity="0.45"/>
+      <stop offset="100%" stop-color="#0284C7" stop-opacity="0.0"/>
+    </linearGradient>
+
+    <!-- Glow Filter -->
+    <filter id="glowLight" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="2" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+  </defs>
+
+  <style>
+    .mono { font-family: 'JetBrains Mono', 'Fira Code', 'Consolas', monospace; }
+    .sans { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; }
+    
+    @keyframes pulse {
+      0% { opacity: 1; }
+      50% { opacity: 0.3; }
+      100% { opacity: 1; }
+    }
+    .pulse-dot { animation: pulse 2s infinite ease-in-out; }
+
+    @keyframes streamLine {
+      from { stroke-dashoffset: 60; }
+      to { stroke-dashoffset: 0; }
+    }
+    .stream-anim {
+      stroke-dasharray: 6, 4;
+      animation: streamLine 1.5s linear infinite;
+    }
+
+    @keyframes barPulse {
+      0%, 100% { opacity: 0.95; }
+      50% { opacity: 0.70; }
+    }
+    .bar-anim { animation: barPulse 3s ease-in-out infinite; }
+
+    .kpi-title { font-size: 10px; font-weight: 600; fill: #94A3B8; letter-spacing: 0.08em; text-transform: uppercase; }
+    .kpi-num { font-size: 24px; font-weight: 700; fill: #F8FAFC; }
+    .kpi-sub { font-size: 11px; font-weight: 500; }
+    .chart-header { font-size: 11px; font-weight: 600; fill: #E2E8F0; letter-spacing: 0.06em; text-transform: uppercase; }
+  </style>
+
+  <!-- Canvas Surface -->
+  <rect x="1" y="1" width="958" height="538" rx="10" fill="url(#canvasBg)" stroke="#1E293B" stroke-width="1.5"/>
+
+  <!-- ================= TOP NAVIGATION / SLICER RIBBON ================= -->
+  <g transform="translate(0, 0)">
+    <rect x="1" y="1" width="958" height="52" rx="10" fill="#0D1424" stroke="#1E293B" stroke-width="1"/>
+    
+    <!-- Power BI Visual Indicator Bar -->
+    <rect x="22" y="18" width="5" height="18" rx="1.5" fill="#F2C811"/>
+    <rect x="30" y="22" width="5" height="14" rx="1.5" fill="#0078D4"/>
+    <rect x="38" y="14" width="5" height="22" rx="1.5" fill="#10B981"/>
+
+    <text x="54" y="30" class="sans" font-size="13" font-weight="700" fill="#F8FAFC" letter-spacing="0.04em">EXECUTIVE ANALYTICS DASHBOARD</text>
+    <text x="320" y="30" class="mono" font-size="10.5" fill="#64748B">// REPORT ID: PBI-DAX-LIVE</text>
+
+    <!-- Slicers / Interactive Filter Mockups -->
+    <g transform="translate(540, 14)">
+      <!-- Slicer 1 -->
+      <rect x="0" y="0" width="110" height="24" rx="4" fill="#131D33" stroke="#1E2D4A" stroke-width="1"/>
+      <text x="10" y="16" class="mono" font-size="9.5" fill="#94A3B8">DATE: 2026-YTD</text>
+      <path d="M98 10 L102 14 L106 10" stroke="#64748B" stroke-width="1.5" fill="none"/>
+
+      <!-- Slicer 2 -->
+      <rect x="118" y="0" width="132" height="24" rx="4" fill="#131D33" stroke="#1E2D4A" stroke-width="1"/>
+      <text x="128" y="16" class="mono" font-size="9.5" fill="#94A3B8">GRAIN: STAR SCHEMA</text>
+      <path d="M238 10 L242 14 L246 10" stroke="#64748B" stroke-width="1.5" fill="none"/>
+
+      <!-- Live Telemetry Status Pill -->
+      <rect x="258" y="0" width="140" height="24" rx="4" fill="#062E20" stroke="#059669" stroke-width="1"/>
+      <circle cx="270" cy="12" r="4" fill="#10B981" filter="url(#glowLight)">
+        <animate attributeName="opacity" values="1;0.25;1" dur="2s" repeatCount="indefinite"/>
+      </circle>
+      <text x="282" y="16" class="mono" font-size="9" font-weight="600" fill="#34D399">ACTIVE TELEMETRY</text>
+    </g>
+  </g>
+
+  <!-- ================= 4 EXECUTIVE KPI CARDS ================= -->
+  <!-- KPI 1: Records Processed -->
+  <g transform="translate(20, 64)">
+    <rect width="218" height="82" rx="8" fill="url(#cardBg)" stroke="#1E2D4A" stroke-width="1"/>
+    <rect x="0" y="0" width="218" height="3" rx="1.5" fill="url(#pbiGold)"/>
+    <text x="14" y="20" class="sans kpi-title">DATA INGESTION &amp; VOLUME</text>
+    <text x="14" y="48" class="mono kpi-num">10.4M+</text>
+    <path d="M140 46 L155 36 L170 42 L185 28 L202 24" stroke="#F2C811" stroke-width="2" fill="none"/>
+    <text x="14" y="68" class="mono kpi-sub" fill="#10B981">▲ +28.4% YoY</text>
+    <text x="100" y="68" class="mono" font-size="10" fill="#64748B">7 RELATIONAL MARTS</text>
+  </g>
+
+  <!-- KPI 2: Query Latency -->
+  <g transform="translate(254, 64)">
+    <rect width="218" height="82" rx="8" fill="url(#cardBg)" stroke="#1E2D4A" stroke-width="1"/>
+    <rect x="0" y="0" width="218" height="3" rx="1.5" fill="url(#azureBlue)"/>
+    <text x="14" y="20" class="sans kpi-title">SQL ENGINE PERFORMANCE</text>
+    <text x="14" y="48" class="mono kpi-num">11.8 ms</text>
+    <!-- Latency Bars Visual -->
+    <rect x="150" y="40" width="6" height="12" fill="#0284C7" rx="1"/>
+    <rect x="162" y="32" width="6" height="20" fill="#0284C7" rx="1"/>
+    <rect x="174" y="26" width="6" height="26" fill="#38BDF8" rx="1"/>
+    <rect x="186" y="20" width="6" height="32" fill="#38BDF8" rx="1"/>
+    <rect x="198" y="16" width="6" height="36" fill="#38BDF8" rx="1"/>
+    <text x="14" y="68" class="mono kpi-sub" fill="#38BDF8">▼ -16.5% LATENCY</text>
+    <text x="120" y="68" class="mono" font-size="10" fill="#64748B">ZERO JOIN FAN-OUT</text>
+  </g>
+
+  <!-- KPI 3: DAX Measures -->
+  <g transform="translate(488, 64)">
+    <rect width="218" height="82" rx="8" fill="url(#cardBg)" stroke="#1E2D4A" stroke-width="1"/>
+    <rect x="0" y="0" width="218" height="3" rx="1.5" fill="url(#emeraldGrad)"/>
+    <text x="14" y="20" class="sans kpi-title">DAX MODEL OPTIMIZATION</text>
+    <text x="14" y="48" class="mono kpi-num">99.98%</text>
+    <circle cx="185" cy="36" r="16" stroke="#1E2D4A" stroke-width="3" fill="none"/>
+    <circle cx="185" cy="36" r="16" stroke="#10B981" stroke-width="3" stroke-dasharray="92 10" fill="none" transform="rotate(-90 185 36)"/>
+    <text x="14" y="68" class="mono kpi-sub" fill="#34D399">142 MEASURES</text>
+    <text x="98" y="68" class="mono" font-size="10" fill="#64748B">VERTIPAQ COMPRESSED</text>
+  </g>
+
+  <!-- KPI 4: Retention Benchmark -->
+  <g transform="translate(722, 64)">
+    <rect width="218" height="82" rx="8" fill="url(#cardBg)" stroke="#1E2D4A" stroke-width="1"/>
+    <rect x="0" y="0" width="218" height="3" rx="1.5" fill="#A855F7"/>
+    <text x="14" y="20" class="sans kpi-title">TIER-1 RETENTION RATE</text>
+    <text x="14" y="48" class="mono kpi-num">98.38%</text>
+    <path d="M140 44 Q 165 38 180 30 T 205 22" stroke="#A855F7" stroke-width="2" fill="none"/>
+    <text x="14" y="68" class="mono kpi-sub" fill="#C084FC">▲ HIGH USAGE TIER</text>
+    <text x="122" y="68" class="mono" font-size="10" fill="#64748B">CHURN: 1.62%</text>
+  </g>
+
+  <!-- ================= MIDDLE ROW: VISUALIZATIONS ================= -->
+  <!-- Chart 1: Clustered Column & Benchmark Line (Power BI Style) -->
+  <g transform="translate(20, 158)">
+    <rect width="510" height="205" rx="8" fill="url(#cardBg)" stroke="#1E2D4A" stroke-width="1"/>
+    <text x="16" y="22" class="sans chart-header">COHORT CHURN RATE &amp; RETENTION VOLUME (MONTHLY)</text>
+    <text x="420" y="22" class="mono" font-size="9" fill="#64748B">UNITS: % / MTH</text>
+
+    <!-- Grid lines -->
+    <line x1="45" y1="50" x2="485" y2="50" stroke="#162035" stroke-width="1" stroke-dasharray="3 3"/>
+    <text x="18" y="54" class="mono" font-size="9" fill="#64748B">25%</text>
+    <line x1="45" y1="90" x2="485" y2="90" stroke="#162035" stroke-width="1" stroke-dasharray="3 3"/>
+    <text x="18" y="94" class="mono" font-size="9" fill="#64748B">15%</text>
+    <line x1="45" y1="130" x2="485" y2="130" stroke="#162035" stroke-width="1" stroke-dasharray="3 3"/>
+    <text x="18" y="134" class="mono" font-size="9" fill="#64748B">5%</text>
+    <line x1="45" y1="165" x2="485" y2="165" stroke="#1E293B" stroke-width="1"/>
+
+    <!-- Benchmark Target Line (Animated Stream) -->
+    <path d="M45 105 L485 105" stroke="#F2C811" stroke-width="1.5" class="stream-anim" fill="none"/>
+    <text x="340" y="100" class="mono" font-size="8.5" fill="#F2C811">TARGET BENCHMARK: 12.0%</text>
+
+    <!-- Bars for 6 Periods with Height Animations -->
+    <!-- Col 1: JAN -->
+    <g transform="translate(60, 0)">
+      <rect x="0" y="68" width="28" height="97" rx="2" fill="#0284C7" class="bar-anim">
+        <animate attributeName="height" values="97;80;97" dur="3.5s" repeatCount="indefinite"/>
+        <animate attributeName="y" values="68;85;68" dur="3.5s" repeatCount="indefinite"/>
+      </rect>
+      <rect x="31" y="95" width="28" height="70" rx="2" fill="#059669" class="bar-anim">
+        <animate attributeName="height" values="70;85;70" dur="3.5s" repeatCount="indefinite"/>
+        <animate attributeName="y" values="95;80;95" dur="3.5s" repeatCount="indefinite"/>
+      </rect>
+      <text x="18" y="180" class="mono" font-size="9.5" fill="#94A3B8">JAN</text>
+    </g>
+
+    <!-- Col 2: FEB -->
+    <g transform="translate(130, 0)">
+      <rect x="0" y="78" width="28" height="87" rx="2" fill="#0284C7" class="bar-anim">
+        <animate attributeName="height" values="87;72;87" dur="3.2s" repeatCount="indefinite"/>
+        <animate attributeName="y" values="78;93;78" dur="3.2s" repeatCount="indefinite"/>
+      </rect>
+      <rect x="31" y="88" width="28" height="77" rx="2" fill="#059669" class="bar-anim">
+        <animate attributeName="height" values="77;90;77" dur="3.2s" repeatCount="indefinite"/>
+        <animate attributeName="y" values="88;75;88" dur="3.2s" repeatCount="indefinite"/>
+      </rect>
+      <text x="18" y="180" class="mono" font-size="9.5" fill="#94A3B8">FEB</text>
+    </g>
+
+    <!-- Col 3: MAR -->
+    <g transform="translate(200, 0)">
+      <rect x="0" y="60" width="28" height="105" rx="2" fill="#0284C7" class="bar-anim">
+        <animate attributeName="height" values="105;92;105" dur="3.8s" repeatCount="indefinite"/>
+        <animate attributeName="y" values="60;73;60" dur="3.8s" repeatCount="indefinite"/>
+      </rect>
+      <rect x="31" y="80" width="28" height="85" rx="2" fill="#059669" class="bar-anim">
+        <animate attributeName="height" values="85;100;85" dur="3.8s" repeatCount="indefinite"/>
+        <animate attributeName="y" values="80;65;80" dur="3.8s" repeatCount="indefinite"/>
+      </rect>
+      <text x="18" y="180" class="mono" font-size="9.5" fill="#94A3B8">MAR</text>
+    </g>
+
+    <!-- Col 4: APR -->
+    <g transform="translate(270, 0)">
+      <rect x="0" y="92" width="28" height="73" rx="2" fill="#0284C7" class="bar-anim">
+        <animate attributeName="height" values="73;60;73" dur="3.1s" repeatCount="indefinite"/>
+        <animate attributeName="y" values="92;105;92" dur="3.1s" repeatCount="indefinite"/>
+      </rect>
+      <rect x="31" y="65" width="28" height="100" rx="2" fill="#059669" class="bar-anim">
+        <animate attributeName="height" values="100;115;100" dur="3.1s" repeatCount="indefinite"/>
+        <animate attributeName="y" values="65;50;65" dur="3.1s" repeatCount="indefinite"/>
+      </rect>
+      <text x="18" y="180" class="mono" font-size="9.5" fill="#94A3B8">APR</text>
+    </g>
+
+    <!-- Col 5: MAY -->
+    <g transform="translate(340, 0)">
+      <rect x="0" y="105" width="28" height="60" rx="2" fill="#0284C7" class="bar-anim">
+        <animate attributeName="height" values="60;48;60" dur="3.4s" repeatCount="indefinite"/>
+        <animate attributeName="y" values="105;117;105" dur="3.4s" repeatCount="indefinite"/>
+      </rect>
+      <rect x="31" y="55" width="28" height="110" rx="2" fill="#059669" class="bar-anim">
+        <animate attributeName="height" values="110;120;110" dur="3.4s" repeatCount="indefinite"/>
+        <animate attributeName="y" values="55;45;55" dur="3.4s" repeatCount="indefinite"/>
+      </rect>
+      <text x="18" y="180" class="mono" font-size="9.5" fill="#94A3B8">MAY</text>
+    </g>
+
+    <!-- Col 6: JUN -->
+    <g transform="translate(410, 0)">
+      <rect x="0" y="115" width="28" height="50" rx="2" fill="#0284C7" class="bar-anim">
+        <animate attributeName="height" values="50;38;50" dur="3.6s" repeatCount="indefinite"/>
+        <animate attributeName="y" values="115;127;115" dur="3.6s" repeatCount="indefinite"/>
+      </rect>
+      <rect x="31" y="45" width="28" height="120" rx="2" fill="#059669" class="bar-anim">
+        <animate attributeName="height" values="120;130;120" dur="3.6s" repeatCount="indefinite"/>
+        <animate attributeName="y" values="45;35;45" dur="3.6s" repeatCount="indefinite"/>
+      </rect>
+      <text x="18" y="180" class="mono" font-size="9.5" fill="#94A3B8">JUN</text>
+    </g>
+
+    <!-- Legend -->
+    <g transform="translate(16, 194)">
+      <rect x="0" y="0" width="8" height="8" rx="1" fill="#0284C7"/>
+      <text x="12" y="7.5" class="mono" font-size="8.5" fill="#94A3B8">CHURN VOL</text>
+      <rect x="90" y="0" width="8" height="8" rx="1" fill="#059669"/>
+      <text x="102" y="7.5" class="mono" font-size="8.5" fill="#94A3B8">RETENTION VOL</text>
+    </g>
+  </g>
+
+  <!-- Chart 2: Pipeline Throughput Area Visual -->
+  <g transform="translate(542, 158)">
+    <rect width="398" height="205" rx="8" fill="url(#cardBg)" stroke="#1E2D4A" stroke-width="1"/>
+    <text x="16" y="22" class="sans chart-header">PIPELINE VELOCITY &amp; DATA MART THROUGHPUT</text>
+    <text x="320" y="22" class="mono" font-size="9" fill="#38BDF8">LIVE REFRESH</text>
+
+    <!-- Area Chart -->
+    <g transform="translate(20, 36)">
+      <!-- Area Curve -->
+      <path d="M10 115 Q 60 70, 110 95 T 210 50 T 300 70 T 360 30 L 360 130 L 10 130 Z" fill="url(#areaFill)"/>
+      <path d="M10 115 Q 60 70, 110 95 T 210 50 T 300 70 T 360 30" stroke="#38BDF8" stroke-width="2.5" fill="none">
+        <animate attributeName="d" 
+          values="M10 115 Q 60 70, 110 95 T 210 50 T 300 70 T 360 30;
+                  M10 110 Q 60 85, 110 65 T 210 75 T 300 45 T 360 25;
+                  M10 115 Q 60 70, 110 95 T 210 50 T 300 70 T 360 30"
+          dur="5s" repeatCount="indefinite"/>
+      </path>
+
+      <!-- Target Threshold Line -->
+      <line x1="10" y1="65" x2="360" y2="65" stroke="#1E293B" stroke-width="1" stroke-dasharray="4 4"/>
+
+      <!-- Telemetry Points with Pulse -->
+      <circle cx="110" cy="95" r="4" fill="#38BDF8" filter="url(#glowLight)"/>
+      <circle cx="210" cy="50" r="4" fill="#38BDF8" filter="url(#glowLight)"/>
+      <circle cx="360" cy="30" r="5" fill="#10B981" filter="url(#glowLight)">
+        <animate attributeName="opacity" values="1;0.3;1" dur="2s" repeatCount="indefinite"/>
+      </circle>
+      <text x="235" y="24" class="mono" font-size="9" fill="#10B981">48.2 GB/DAY (VALIDATED)</text>
+
+      <!-- Sub Metrics Grid -->
+      <g transform="translate(0, 138)">
+        <rect x="0" y="0" width="112" height="24" rx="4" fill="#0D1526" stroke="#1E293B" stroke-width="1"/>
+        <text x="6" y="16" class="mono" font-size="9" fill="#94A3B8">ETL LATENCY: 4.2m</text>
+
+        <rect x="122" y="0" width="112" height="24" rx="4" fill="#0D1526" stroke="#1E293B" stroke-width="1"/>
+        <text x="6" y="16" class="mono" font-size="9" fill="#94A3B8">ERROR RATE: 0.0%</text>
+
+        <rect x="244" y="0" width="116" height="24" rx="4" fill="#0D1526" stroke="#1E293B" stroke-width="1"/>
+        <text x="6" y="16" class="mono" font-size="9" fill="#34D399">STATUS: OPTIMAL</text>
+      </g>
+    </g>
+  </g>
+
+  <!-- ================= BOTTOM ROW: DONUT & SCHEMA AUDIT MATRIX ================= -->
+  <!-- Visual 3: Power BI Radial / Donut Chart (Dimensional Model Breakdown) -->
+  <g transform="translate(20, 375)">
+    <rect width="360" height="148" rx="8" fill="url(#cardBg)" stroke="#1E2D4A" stroke-width="1"/>
+    <text x="16" y="20" class="sans chart-header">MODEL ARCHITECTURE &amp; SCHEMA GRAIN</text>
+
+    <!-- Donut Segments -->
+    <g transform="translate(85, 84)">
+      <!-- Outer Track -->
+      <circle cx="0" cy="0" r="48" stroke="#162035" stroke-width="16" fill="none"/>
+      <!-- Segment 1: Star Schema 50% -->
+      <circle cx="0" cy="0" r="48" stroke="#0078D4" stroke-width="16" stroke-dasharray="150 151" fill="none" transform="rotate(-90)"/>
+      <!-- Segment 2: 3NF Marts 30% -->
+      <circle cx="0" cy="0" r="48" stroke="#10B981" stroke-width="16" stroke-dasharray="90 211" stroke-dashoffset="-150" fill="none" transform="rotate(-90)"/>
+      <!-- Segment 3: Flat Analytical 20% -->
+      <circle cx="0" cy="0" r="48" stroke="#F2C811" stroke-width="16" stroke-dasharray="61 240" stroke-dashoffset="-240" fill="none" transform="rotate(-90)"/>
+      
+      <!-- Inner Value -->
+      <text x="0" y="-4" class="mono" font-size="14" font-weight="700" fill="#F8FAFC" text-anchor="middle">3-TIER</text>
+      <text x="0" y="12" class="mono" font-size="8.5" fill="#94A3B8" text-anchor="middle">ENGINE</text>
+    </g>
+
+    <!-- Donut Legend -->
+    <g transform="translate(180, 48)">
+      <rect x="0" y="0" width="8" height="8" rx="2" fill="#0078D4"/>
+      <text x="14" y="8" class="mono" font-size="10" fill="#F8FAFC">STAR SCHEMA (50%)</text>
+      <text x="14" y="20" class="mono" font-size="8.5" fill="#64748B">Fact &amp; Conformed Dims</text>
+
+      <rect x="0" y="32" width="8" height="8" rx="2" fill="#10B981"/>
+      <text x="14" y="40" class="mono" font-size="10" fill="#F8FAFC">RELATIONAL 3NF (30%)</text>
+      <text x="14" y="52" class="mono" font-size="8.5" fill="#64748B">Normalized OLTP Core</text>
+
+      <rect x="0" y="64" width="8" height="8" rx="2" fill="#F2C811"/>
+      <text x="14" y="72" class="mono" font-size="10" fill="#F8FAFC">ANALYTICAL MARTS (20%)</text>
+      <text x="14" y="84" class="mono" font-size="8.5" fill="#64748B">De-fanout Flat Aggs</text>
+    </g>
+  </g>
+
+  <!-- Visual 4: Relational Integrity & Schema Audit Matrix (Power BI Matrix Visual) -->
+  <g transform="translate(392, 375)">
+    <rect width="548" height="148" rx="8" fill="url(#cardBg)" stroke="#1E2D4A" stroke-width="1"/>
+    <text x="16" y="20" class="sans chart-header">RELATIONAL SCHEMA HEALTH &amp; JOIN FAN-OUT AUDITING</text>
+    <text x="470" y="20" class="mono" font-size="9" fill="#10B981">ALL PASS</text>
+
+    <!-- Table Header -->
+    <rect x="14" y="32" width="520" height="22" fill="#0F172A" rx="3"/>
+    <text x="24" y="47" class="mono" font-size="9" font-weight="600" fill="#94A3B8">ENTITY NAME</text>
+    <text x="150" y="47" class="mono" font-size="9" font-weight="600" fill="#94A3B8">SCHEMA TYPE</text>
+    <text x="260" y="47" class="mono" font-size="9" font-weight="600" fill="#94A3B8">FAN-OUT AUDIT</text>
+    <text x="380" y="47" class="mono" font-size="9" font-weight="600" fill="#94A3B8">QUERY LATENCY</text>
+    <text x="480" y="47" class="mono" font-size="9" font-weight="600" fill="#94A3B8">STATUS</text>
+
+    <!-- Row 1 -->
+    <g transform="translate(14, 58)">
+      <text x="10" y="15" class="mono" font-size="9.5" fill="#F8FAFC">dim_customer</text>
+      <text x="136" y="15" class="mono" font-size="9" fill="#64748B">Conformed Dim</text>
+      <text x="246" y="15" class="mono" font-size="9" fill="#38BDF8">Unique Primary Key</text>
+      <text x="366" y="15" class="mono" font-size="9" fill="#94A3B8">0.8 ms</text>
+      <text x="466" y="15" class="mono" font-size="9" font-weight="600" fill="#34D399">VALID</text>
+      <line x1="0" y1="20" x2="520" y2="20" stroke="#162035" stroke-width="1"/>
+    </g>
+
+    <!-- Row 2 -->
+    <g transform="translate(14, 80)">
+      <text x="10" y="15" class="mono" font-size="9.5" fill="#F8FAFC">fact_subscriptions</text>
+      <text x="136" y="15" class="mono" font-size="9" fill="#64748B">Transactional Fact</text>
+      <text x="246" y="15" class="mono" font-size="9" fill="#38BDF8">Indexed 1:M Link</text>
+      <text x="366" y="15" class="mono" font-size="9" fill="#94A3B8">2.4 ms</text>
+      <text x="466" y="15" class="mono" font-size="9" font-weight="600" fill="#34D399">VALID</text>
+      <line x1="0" y1="20" x2="520" y2="20" stroke="#162035" stroke-width="1"/>
+    </g>
+
+    <!-- Row 3 -->
+    <g transform="translate(14, 102)">
+      <text x="10" y="15" class="mono" font-size="9.5" fill="#F8FAFC">agg_customer_mart</text>
+      <text x="136" y="15" class="mono" font-size="9" fill="#64748B">Customer Mart</text>
+      <text x="246" y="15" class="mono" font-size="9" fill="#10B981">Zero Fan-Out Verified</text>
+      <text x="366" y="15" class="mono" font-size="9" fill="#94A3B8">4.1 ms</text>
+      <text x="466" y="15" class="mono" font-size="9" font-weight="600" fill="#34D399">VALID</text>
+      <line x1="0" y1="20" x2="520" y2="20" stroke="#162035" stroke-width="1"/>
+    </g>
+
+    <!-- Row 4 -->
+    <g transform="translate(14, 124)">
+      <text x="10" y="15" class="mono" font-size="9.5" fill="#F8FAFC">fact_support_tickets</text>
+      <text x="136" y="15" class="mono" font-size="9" fill="#64748B">Event Stream Fact</text>
+      <text x="246" y="15" class="mono" font-size="9" fill="#38BDF8">Pre-aggregated Subquery</text>
+      <text x="366" y="15" class="mono" font-size="9" fill="#94A3B8">1.9 ms</text>
+      <text x="466" y="15" class="mono" font-size="9" font-weight="600" fill="#34D399">VALID</text>
+    </g>
+  </g>
+</svg>
