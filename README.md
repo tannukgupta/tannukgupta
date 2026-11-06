@@ -105,7 +105,7 @@ Key technical priorities include:
 
 | Channel | Endpoint | Status |
 | :--- | :--- | :--- |
-| **LinkedIn** | [linkedin.com/in/tannukgupta](https://www.linkedin.com/in/) | `Available for Professional Inquiries` |
+| **LinkedIn** | [linkedin.com/in/tannukgupta](https://www.linkedin.com/in/tannu-kumari-gupta/) | `Available for Professional Inquiries` |
 | **GitHub** | [github.com/tannukgupta](https://github.com/tannukgupta) | `Active Repositories & SQL Scripts` |
 | **Email** | Available upon request via LinkedIn | `Open to Data Analyst & BI Roles` |
 | **Work Modality** | Remote / Hybrid / On-site (India) | `Immediate Availability` |
